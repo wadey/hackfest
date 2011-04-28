@@ -44,8 +44,7 @@
           }
 
           var dest;
-          Object.keys(map).forEach(function(name) {
-            var regexp = map[name]
+          $.each(map, function(name, regexp) {
             if (regexp.test(whale.message.to)) {
               dest = $(name)
             }
@@ -81,7 +80,9 @@
             })
           }
         } catch (err) {
-          console.error(err)
+          if (window.console) {
+            console.error(err)
+          }
         }
         return false;
       })
@@ -109,7 +110,6 @@
       }
 
       var pos = whale.position()
-      console.log(pos)
       if (!msgBox) {
         msgBox = $('<div>')
         msgBox.addClass('message_box')
